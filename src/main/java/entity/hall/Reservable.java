@@ -1,4 +1,4 @@
-package entity;
+package entity.hall;
 
 import java.time.LocalDateTime;
 /**

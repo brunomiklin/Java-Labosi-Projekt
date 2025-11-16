@@ -1,4 +1,4 @@
-package entity;
+package entity.hall;
 
 /**
  * Predstavlja označenu iznimku koja se baca kada se unese neispravan

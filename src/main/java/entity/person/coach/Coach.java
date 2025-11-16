@@ -1,4 +1,8 @@
-package entity;
+package entity.person.coach;
+
+import entity.hall.Hall;
+import entity.person.Person;
+import entity.booking.Booking;
 
 import java.time.LocalDateTime;
 

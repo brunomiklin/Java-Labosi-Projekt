@@ -1,4 +1,7 @@
-package entity;
+package entity.person;
+
+import entity.person.coach.Coach;
+import entity.person.user.User;
 
 import java.util.Objects;
 

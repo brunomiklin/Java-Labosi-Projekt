@@ -1,4 +1,4 @@
-package entity;
+package entity.person;
 
 /**
  * Predstavlja označenu iznimku koja se baca kada je uneseni OIB neispravan.

@@ -1,4 +1,6 @@
-package entity;
+package entity.hall;
+
+import entity.booking.Booking;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

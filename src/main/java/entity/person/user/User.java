@@ -1,4 +1,7 @@
-package entity;
+package entity.person.user;
+
+import entity.person.Person;
+import entity.booking.Booking;
 
 /**
  * Predstavlja korisnika sustava koji nasljeđuje osobu (Person) i ima mogućnost
