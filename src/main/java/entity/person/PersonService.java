@@ -17,42 +17,36 @@ public class PersonService {
     public PersonService(Scanner sc) {
         this.sc = sc;
     }
-    public static Set<Person> generatePeople(Scanner sc, int number_of_users) {
-            {
-                Set<Person> osobe = new HashSet<>();
+    public static Person generatePerson(Scanner sc) {
+        log.trace("Ulazak u generatePerson");
 
-                for (Integer i = 0; i < number_of_users; i++) {
+        while (true) {
+            try {
+                System.out.print("Odaberi tip korisnika (1. User, 2. Trener): ");
+                int choice = Integer.parseInt(sc.nextLine());
 
-                    log.trace("Iteracija kroz for-petlju (NUMBER_OF_USERS)");
-                    while (true) {
-                        try {
-                            System.out.print("Odaberi tip korisnika (1. User, 2. Trener): ");
-                            Integer choice = Integer.parseInt(sc.nextLine());
-                            switch (choice) {
-                                case 1 -> osobe.add(UserService.generateUser(sc));
-                                case 2 -> osobe.add(CoachService.generateCoach(sc));
-                                default -> {
-                                    System.out.println("Nepoznat izbor, unosimo User po defaultu.");
-                                    osobe.add(UserService.generateUser(sc));
-                                }
-                            };
-                            log.info("Korisnik je uspješno kreiran!");
-                            break;
-                        } catch (InvalidOibException e) {
-                            System.out.println(e.getMessage());
-                            log.error(e.getMessage());
-                        } catch (IllegalArgumentException iag) {
-                            System.out.println(iag.getMessage());
-                            log.error(iag.getMessage());
-                        }
-
-
+                switch (choice) {
+                    case 1 -> {
+                        log.info("Generiramo User-a");
+                        return UserService.generateUser(sc);
+                    }
+                    case 2 -> {
+                        log.info("Generiramo Coach-a");
+                        return CoachService.generateCoach(sc);
+                    }
+                    default -> {
+                        System.out.println("Nepoznat izbor, unosimo User po defaultu.");
+                        return UserService.generateUser(sc);
                     }
                 }
-                return osobe;
-            }
 
+            } catch (InvalidOibException | IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+                log.error(ex.getMessage());
+            }
         }
+    }
+
 
     /**
      * Grupiranje osoba po tipu (User ili Coach) i ispis ovisno o korisničkom izboru.
@@ -60,7 +54,7 @@ public class PersonService {
      * @param osobe skup osoba koje sadrže instance klasa {@link User} i {@link Coach}
      * @param sc Scanner za unos korisničkog izbora
      */
-    public static void groupPeople(Set<Person> osobe, Scanner sc) {
+    public static void groupPeople(Set<? extends Person> osobe, Scanner sc) {
         log.trace("Ulazak u metodu groupPeople");
         log.info("Grupiramo osobe po tipu (User/Coach).");
 
@@ -102,7 +96,12 @@ public class PersonService {
             System.out.println("Nema pronađenih osoba za odabrani tip!");
         } else {
             System.out.println("--- Popis " + (choice == 1 ? "korisnika" : "trenera") + " ---");
-            selectedGroup.sort(Comparator.comparing(Person::getLastName)); // opcionalno sortiranje
+            selectedGroup.sort(
+                    Comparator.comparing(
+                            Person::getLastName,
+                            Comparator.nullsLast(String::compareTo)
+                    )
+            );
             for (Person p : selectedGroup) {
                 if (p instanceof User user) {
                     System.out.println("User: " + user.getFirstName() + " " + user.getLastName());
@@ -115,6 +114,14 @@ public class PersonService {
 
         log.trace("Izlazak iz metode groupPeople");
     }
+
+    // Ovo ce mi koristiti u JAVA FX
+    public static <T extends Person & Comparable<T>> void printSortedPeople(List<T> people) {
+        people.stream().sorted().forEach(Person::printPersonalData);
+    }
+
+
+
 
 
 }

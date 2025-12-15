@@ -13,18 +13,17 @@ import java.util.stream.Collectors;
 public class HallService {
     static Logger log = LoggerFactory.getLogger(HallService.class);
 
-    public static List<Hall> generateHalls(Integer numberOfHalls, Scanner sc) {
-        List<Hall> dvorane = new ArrayList<>();
-        for (int i = 0; i < numberOfHalls; i++) {
+    public static Hall createHall(Scanner sc) {
+        log.trace("Ulazak u createHall");
+
+        while (true) {
             try {
-                System.out.println("Unos dvorane " + (i + 1));
-                dvorane.add(generateHall(sc));
+                return generateHall(sc);  // metoda koja već kreira 1 hall
             } catch (InvalidHallCapacity e) {
                 System.out.println(e.getMessage() + " Pokušajte ponovno.");
-                i--; // ponovi unos iste dvorane
+                log.error(e.getMessage());
             }
         }
-        return dvorane;
     }
     /**
      * Generainje singularne dvorane i vraćanje iste u main

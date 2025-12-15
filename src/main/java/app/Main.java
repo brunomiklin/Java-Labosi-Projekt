@@ -1,15 +1,20 @@
 package app;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
-import entity.booking.BookingService;
+import entity.assets.MenuController;
 import entity.hall.Hall;
-import entity.hall.HallService;
-import entity.person.coach.CoachService;
 import entity.person.Person;
-import entity.person.PersonService;
-import entity.search.SearchService;
+import entity.person.coach.Coach;
+import entity.person.user.User;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,8 +29,6 @@ import org.slf4j.LoggerFactory;
  */
 public class Main {
     static Logger log = LoggerFactory.getLogger(Main.class);
-    public static final Integer NUMBER_OF_OBJECTS = 5;
-    public static final Integer NUMBER_OF_USERS = 5;
 
     /**
      * Pozivanje različitih metoda te generianje i manipulacija korisnicima, bookingom i dvoranama
@@ -35,39 +38,57 @@ public class Main {
      */
     static void main() {
         log.trace("Ulaz u glavnu metodu main.");
+        log.trace("Deserijalizacija pomocu JSON-a");
+
         Scanner sc = new Scanner(System.in);
+        Set<Person> osobe = new HashSet<>();
+        List<Hall> dvorane = new ArrayList<>();
+        try {
+                Jsonb jsonb = JsonbBuilder.create();
+                String jsonUser = Files.readString(Paths.get("files/user.json"));
+                String jsonCoach = Files.readString(Paths.get("files/coach.json"));
+                String jsonHall = Files.readString(Paths.get("files/hall.json"));
 
-        log.info("Generiranje osoba");
-        Set<Person> osobe = PersonService.generatePeople(sc, NUMBER_OF_USERS);
+                 Set<Coach> coaches = jsonb.fromJson(jsonCoach,new HashSet<Coach>(){}.getClass().getGenericSuperclass());
+                 Set<User> users = jsonb.fromJson(jsonUser,new HashSet<User>(){}.getClass().getGenericSuperclass());
 
-        log.info("Generiranje dvorana");
-        List<Hall> dvorane = HallService.generateHalls(NUMBER_OF_OBJECTS,sc);
+                 osobe.addAll(coaches);
+                 osobe.addAll(users);
 
-        log.info("Kreiranje bookinga");
-        BookingService.createBooking(osobe, sc, dvorane);
+                 dvorane = jsonb.fromJson(jsonHall,new ArrayList<Hall>(){}.getClass().getGenericSuperclass());
 
-        log.info("Pridruživanje korisnika bookinzima");
-        HallService.joinBooking(osobe, sc);
 
-        log.info("Pretraga korisnika");
-        SearchService.searchUsers(osobe, sc);
+        }catch (IOException ioe)
+        {
+            log.error("Greška kod deserijalizacije JSON-a");
+            ioe.printStackTrace();
+            System.err.println("Grška kod serijalizacije JSON-a!");
+        }
 
-        log.info("Pretraga dvorana");
-        SearchService.searchHalls(dvorane, sc);
 
-        log.info("Grupiranje osoba po tipu");
-        PersonService.groupPeople(osobe, sc);
+        log.trace("Ulazak u meni.");
+        System.out.println("\nSustav za upravljanje sportskim dvoranama i terenima \uD83C\uDFBD\n");
+        MenuController.menu(osobe, dvorane, sc);
 
-        log.info("Particioniranje osoba po emailu");
-        SearchService.partitioningByEmail(osobe);
+        log.trace("Serijalizacija JSON-a.");
+        try(FileWriter coachWritter = new FileWriter("files/coach.json");FileWriter hallWriter = new FileWriter("files/hall.json");FileWriter userWriter = new FileWriter("files/user.json")) {
+                Jsonb jsonb = JsonbBuilder.create();
+                String jsonCoach = jsonb.toJson(osobe.stream().filter(person -> person instanceof Coach).collect(Collectors.toList()));
+                String jsonUser = jsonb.toJson(osobe.stream().filter(person -> person instanceof User).collect(Collectors.toList()));
+                String jsonHall = jsonb.toJson(dvorane);
+                userWriter.write(jsonUser);
+                coachWritter.write(jsonCoach);
+                hallWriter.write(jsonHall);
 
-        log.info("Ispis top 3 trenera po broju termina");
-        CoachService.printTop3CoachesByBookings(osobe);
+        }catch (IOException ioe)
+        {
+            System.err.println("Greška kod serijalizacije JSON-a");
+        }
 
-        log.trace("Izlaz iz glavne metode main.");
+        log.trace("Izlaz iz main metode.");
+    }
     }
 
-    }
 
 
 

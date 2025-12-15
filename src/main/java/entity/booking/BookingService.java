@@ -6,6 +6,7 @@ import entity.person.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.print.Book;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -25,13 +26,13 @@ public class BookingService {
      * @param sc Scanner se šalje kroz parametar a definiran je napočetku u metodi main.
      * @param dvorane niz svih dostupnih dvorana kreiranih u metodi main.
      */
-    public static void createBooking(Set<Person> osobe, Scanner sc, List<Hall> dvorane) {
+    public static void createBooking(Set<? extends Person> osobe, Scanner sc, List<Hall> dvorane) {
         log.trace("Ulaz u metodu createBooking.");
         log.info("Kreiramo booking.");
         String choice="";
         do {
             log.info("Odabir trenera.");
-            System.out.println("\nOdaberi trenera:");
+            System.out.println("Odaberi trenera:");
             Integer choiceHall,cohiceCoach;
             List<Coach> choiceCoaches = osobe.stream()
                     .filter(p->p instanceof Coach)
@@ -132,5 +133,4 @@ public class BookingService {
         } while ("DA".equalsIgnoreCase(choice));
         log.trace("Izlaz iz metode createBooking");
     }
-
 }

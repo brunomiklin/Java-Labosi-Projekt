@@ -2,6 +2,7 @@ package entity.hall;
 
 import entity.booking.Booking;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -14,7 +15,7 @@ import java.util.*;
  * i podrižani sport.
  * 
  */
-non-sealed public class Hall implements Reservable, Schedulable {
+non-sealed public class Hall implements Reservable, Schedulable, Serializable {
     private static final Integer BrojBookinga = 5;
     private String name,doorNumber;
     private Integer capacity;
@@ -155,4 +156,7 @@ non-sealed public class Hall implements Reservable, Schedulable {
     public SportType getSport() {
         return supportedSport;
     }
+
+
+
 }

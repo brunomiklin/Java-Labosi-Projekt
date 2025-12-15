@@ -22,14 +22,13 @@ public class SearchService {
      * @param osobe sadrži instance dviju različitih klasa ({@link User}/{@link Coach}), imajući to na umu ispisat će se različita poruka
      * @param sc - Scanner se šalje kroz parametar a definiran je napočetku u metodi main
      */
-    public static void searchUsers(Set<Person> osobe, Scanner sc) {
+    public static void searchUsers(Set<? extends Person> osobe, Scanner sc) {
         log.trace("Ulazak u metodu searchUsers.");
         log.info("Preražujemo korisnike.");
 
         System.out.println("Pretraži korisnika po imenu/prezimenu: ");
         System.out.println("1. ime");
         System.out.println("2. prezime");
-        System.out.print("Odabir >> ");
         Integer choice = 0;
 
         while (choice != 1 && choice != 2) { {
@@ -93,7 +92,7 @@ public class SearchService {
      *  @param halls niz tipa "Hall" sadrži popis dvorana unesenih pomocu metodu "generateHalls"
      * @param sc Scanner se šalje kroz parametar a definiran je napočetku u metodi main.
      */
-    public static void searchHalls(List<Hall> halls,Scanner sc)
+    public static void searchHalls(List<? extends Hall> halls,Scanner sc)
     {
         log.trace("Ulazak u metodu searchHalls");
         log.info("Preražujemo dvorane.");
@@ -151,14 +150,14 @@ public class SearchService {
      *
      *Ispisuje korisnike za koje smo unijeli mail i one koje nismo.
      */
-    public static void partitioningByEmail(Set<Person> osobe)
+    public static void partitioningByEmail(Set<? extends Person> osobe)
     {
-        Map<Boolean,List<Person>> resultat = osobe.stream().collect(Collectors.partitioningBy(p->p.getEmail()!=null && p.getEmail().isEmpty()));
+        Map<Boolean,List<Person>> rezultat = osobe.stream().collect(Collectors.partitioningBy(p->p.getEmail()!=null && p.getEmail().isEmpty()));
 
         System.out.println("Osobe s mailom:");
-        resultat.get(true).forEach(p-> System.out.println(p.getEmail() + " - " + p.getFirstName() + " " + p.getLastName()));
+        rezultat.get(true).forEach(p-> System.out.println(p.getEmail() + " - " + p.getFirstName() + " " + p.getLastName()));
 
         System.out.println("Osobe bez maila:");
-        resultat.get(false).forEach(p-> System.out.println(p.getFirstName() + " " + p.getLastName()));
+        rezultat.get(false).forEach(p-> System.out.println(p.getFirstName() + " " + p.getLastName()));
     }
 }

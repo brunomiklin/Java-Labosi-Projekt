@@ -4,7 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="564ffdd1-2c04-4ce2-a6c7-6bb4e536b35e" name="Changes" comment="4. labos - 16.11.2025" />
+    <list default="true" id="564ffdd1-2c04-4ce2-a6c7-6bb4e536b35e" name="Changes" comment="Projekt - Faza -&gt; Labos 4 (Liste, Setovi, Collections, Gatherers..) - promjena strukture projekta">
+      <change afterPath="$PROJECT_DIR$/files/coach.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/hall.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/log.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/user.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/assets/BackupController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/assets/Backupdata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/assets/LogEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/assets/LogFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/assets/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/assets/XmlLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/pogreske.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/booking/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/booking/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/booking/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/booking/BookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/hall/Hall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/hall/Hall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/hall/HallService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/hall/HallService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/hall/Reservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/hall/Reservable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/hall/SportType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/hall/SportType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/person/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/person/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/person/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/person/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/person/coach/Coach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/person/coach/Coach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/person/coach/CoachService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/person/coach/CoachService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/person/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/person/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/person/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/person/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/search/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/search/SearchService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,12 +59,13 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/brunomiklin/Java-Labos2.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/brunomiklin/Java-Labosi-Projekt.git&quot;,
     &quot;accountId&quot;: &quot;372eb69c-19c1-400e-b0fa-011ca24592ef&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/app/Main.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/entity/search/SearchService.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -45,25 +75,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/bruno/IdeaProjects/Sustav za upravljanje sportskim dvoranama i terenima",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "spring",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/bruno/IdeaProjects/Sustav za upravljanje sportskim dvoranama i terenima&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;spring&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/files" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-25" />
@@ -72,7 +109,7 @@
       <module name="Sustav-za-upravljanje-sportskim-centrima-i-terminima" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="app.*" />
+          <option name="PATTERN" value="entity.assets.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,7 +148,30 @@
       <workItem from="1763039676269" duration="1502000" />
       <workItem from="1763051958688" duration="1238000" />
       <workItem from="1763302134645" duration="7311000" />
-      <workItem from="1763312677738" duration="364000" />
+      <workItem from="1763312677738" duration="705000" />
+      <workItem from="1763375336086" duration="434000" />
+      <workItem from="1763381448036" duration="1306000" />
+      <workItem from="1763393645575" duration="387000" />
+      <workItem from="1763415901384" duration="621000" />
+      <workItem from="1763461778872" duration="103000" />
+      <workItem from="1763468953256" duration="167000" />
+      <workItem from="1763738032093" duration="38000" />
+      <workItem from="1763905184737" duration="97000" />
+      <workItem from="1764093459913" duration="320000" />
+      <workItem from="1764112367080" duration="4713000" />
+      <workItem from="1764154966742" duration="224000" />
+      <workItem from="1764173273049" duration="194000" />
+      <workItem from="1764976374865" duration="84000" />
+      <workItem from="1765066058580" duration="9029000" />
+      <workItem from="1765184001389" duration="6286000" />
+      <workItem from="1765213962206" duration="571000" />
+      <workItem from="1765270414959" duration="269000" />
+      <workItem from="1765367080269" duration="383000" />
+      <workItem from="1765370039657" duration="36000" />
+      <workItem from="1765390266623" duration="1823000" />
+      <workItem from="1765457230282" duration="2000" />
+      <workItem from="1765460212949" duration="660000" />
+      <workItem from="1765467798308" duration="1039000" />
     </task>
     <task id="LOCAL-00001" summary="3 labos - 11.11.2025.">
       <option name="closed" value="true" />
@@ -145,17 +205,49 @@
       <option name="project" value="LOCAL" />
       <updated>1763312917696</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Projekt - Faza -&gt; Labos 4 (Liste, Setovi, Collections, Gatherers..) - promjena strukture projekta">
+      <option name="closed" value="true" />
+      <created>1763313234408</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1763313234408</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="3 labos - 11.11.2025." />
     <MESSAGE value="4. labos - 13.11.2025" />
     <MESSAGE value="4. labos - 16.11.2025" />
-    <option name="LAST_COMMIT_MESSAGE" value="4. labos - 16.11.2025" />
+    <MESSAGE value="Projekt - Faza -&gt; Labos 4 (Liste, Setovi, Collections, Gatherers..) - promjena strukture projekta" />
+    <option name="LAST_COMMIT_MESSAGE" value="Projekt - Faza -&gt; Labos 4 (Liste, Setovi, Collections, Gatherers..) - promjena strukture projekta" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

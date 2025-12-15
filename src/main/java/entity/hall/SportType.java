@@ -1,9 +1,10 @@
 package entity.hall;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public enum SportType {
+public enum SportType implements Serializable {
     NOGOMET,RUKOMET,TENNIS,KOSARKA,PLIVANJE,ODBOJKA,JOGA,WELNES;
 
     /**

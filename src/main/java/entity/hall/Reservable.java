@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * Metodom {@link #isAvailable(LocalDateTime, Integer)} može se provjeriti
  * raspoloživost prije dodavanja nove rezervacije.
  */
-public interface Reservable {
+public sealed interface Reservable permits Hall {
 
 
     /**

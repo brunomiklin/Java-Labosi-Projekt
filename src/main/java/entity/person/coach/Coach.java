@@ -3,8 +3,14 @@ package entity.person.coach;
 import entity.hall.Hall;
 import entity.person.Person;
 import entity.booking.Booking;
+import jakarta.json.bind.annotation.JsonbTransient;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Predstavlja trenera koji nasljeđuje klasu Person i ima mogućnost
@@ -16,12 +22,16 @@ import java.time.LocalDateTime;
  *
  * Metoda {@link #createBooking(Hall, LocalDateTime, Integer)} omogućuje kreiranje nove rezervacije,
  * dok {@link #printMyBookings} ispisuje sve rezervacije trenera.
- *
  */
-public class Coach extends Person {
+public class Coach extends Person implements Serializable {
     private static final Integer BrojBookinga = 5;
-    private String specializtion;
-    private Booking[] myBookings = new Booking[BrojBookinga];
+
+    private String specialization;
+    @JsonbTransient
+    private List<Booking> myBookings = new ArrayList<>();
+    public Coach(){
+        super();
+    }
 
     /**
      * Privatni konstruktor koji se koristi unutar CoachBuildera.
@@ -30,7 +40,7 @@ public class Coach extends Person {
      */
     private Coach(CoachBuilder builder) {
         super(builder);
-        this.specializtion = builder.specialization;
+        this.specialization = builder.specialization;
     }
 
     /**
@@ -79,43 +89,53 @@ public class Coach extends Person {
      * @param trainingTime trajanje treninga u minutama
      */
     public void createBooking(Hall hall, LocalDateTime dateTime, Integer trainingTime) {
-        if (!hall.isAvailable(dateTime, trainingTime)) {
-            System.out.println("Dvorana " + hall.getName() + " je zauzeta " + dateTime.toLocalDate() + " u " + dateTime.toLocalTime());
-        } else {
-            Booking booking = new Booking(this, hall, dateTime, trainingTime);
-            hall.addBooking(booking);
-            for (Integer i = 0; i < myBookings.length; i++) {
-                if (myBookings[i] == null) {
-                    myBookings[i] = booking;
-                    break;
-                }
-                if (i == myBookings.length - 1) {
-                    System.out.println(getFirstName() + " ima popunjen raspored!");
-                }
-            }
-        }
+        Optional<Hall> maybeHall = Optional.ofNullable(hall);
+
+        maybeHall.ifPresentOrElse(
+                h -> {
+                    if (!h.isAvailable(dateTime, trainingTime)) {
+                        System.out.println("Dvorana " + h.getName() + " je zauzeta "
+                                + dateTime.toLocalDate() + " u " + dateTime.toLocalTime());
+                        return;
+                    }
+
+                    if (myBookings.size() >= BrojBookinga) {
+                        System.out.println(getFirstName() + " ima popunjen raspored!");
+                        return;
+                    }
+
+                    Booking booking = new Booking(this, h, dateTime, trainingTime);
+                    h.addBooking(booking);
+                    myBookings.add(booking);
+                },
+
+                () -> System.out.println("Greška: dvorana ne može biti null!")
+        );
     }
 
     /**
-     * Dohvaća sve rezervacije trenera.
+     * Dohvaća sve rezervacije trenera kao array (kompatibilno za top3 servis)
      *
      * @return niz rezervacija
      */
     public Booking[] getMyBookings() {
-        return myBookings;
+        return myBookings.toArray(new Booking[0]);
     }
 
     /**
      * Ispisuje sve rezervirane treninge trenera.
      */
     public void printMyBookings() {
-        System.out.println("Svi rezervirani treninzi:");
-        for (Integer i = 0; i < myBookings.length; i++) {
-            if (myBookings[i] == null) {
-                break;
-            }
-            System.out.println(myBookings[i]);
-        }
+        Optional<List<Booking>> maybe = Optional.ofNullable(myBookings);
+
+        maybe.filter(list -> !list.isEmpty())
+                .ifPresentOrElse(
+                        list -> {
+                            System.out.println("Svi rezervirani treninzi trenera " + getFirstName() + ":");
+                            list.stream().filter(Objects::nonNull).forEach(System.out::println);
+                        },
+                        () -> System.out.println("Trener nema rezerviranih treninga.")
+                );
     }
 
     /**

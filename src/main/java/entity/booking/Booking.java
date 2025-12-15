@@ -2,10 +2,12 @@ package entity.booking;
 
 import entity.person.coach.Coach;
 import entity.hall.Hall;
+import jakarta.json.bind.annotation.JsonbTransient;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public record Booking(Coach coach, Hall hall, LocalDateTime dateTime, Integer trainingTime) {
+public record Booking( @JsonbTransient Coach coach, Hall hall, LocalDateTime dateTime, Integer trainingTime) implements Serializable {
 
     @Override
     public LocalDateTime dateTime() {

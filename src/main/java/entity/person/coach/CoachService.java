@@ -106,7 +106,7 @@ public class CoachService {
      *
      * @param osobe
      */
-    public static void printTop3CoachesByBookings(Set<Person> osobe) {
+    public static void printTop3CoachesByBookings(Set<? extends Person> osobe) {
         List<List<Coach>> top3Coaches = osobe.stream()
                 .filter(p->p instanceof Coach)
                 .map(p->(Coach)p)
@@ -126,6 +126,14 @@ public class CoachService {
         }
 
         log.trace("Izlaz iz metode main.");
+    }
+
+
+
+    // Trebat ce mi kod JavaFX
+    public static void addCoachToList(List<? super Coach> listCoacha, Coach coach)
+    {
+        listCoacha.add(coach);
     }
 
 

@@ -5,6 +5,7 @@ import entity.person.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserService {
@@ -107,4 +108,12 @@ public class UserService {
 
         return tempUser;
     }
+
+
+    // Trebat ce mi kod JAVAFX
+    public static void addUsertToList(List<? super User> listUsera,User user)
+    {
+        listUsera.add(user);
+    }
+
 }
